@@ -1,0 +1,178 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-jetbrains);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-electric: var(--electric);
+  --color-electric-foreground: var(--electric-foreground);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+}
+
+:root {
+  color-scheme: light;
+
+  /* cold off-white paper */
+  --background: oklch(0.968 0.006 250);
+  --foreground: oklch(0.17 0.03 265);
+
+  /* electric blue signature */
+  --electric: oklch(0.52 0.264 264);
+  --electric-foreground: oklch(0.98 0.01 250);
+
+  /* deep ink-blue for immersive dark fields */
+  --ink: oklch(0.19 0.06 266);
+  --ink-foreground: oklch(0.95 0.01 250);
+
+  --muted: oklch(0.93 0.008 250);
+  --muted-foreground: oklch(0.48 0.03 262);
+
+  --line: oklch(0.17 0.03 265 / 0.14);
+
+  --primary: var(--electric);
+  --primary-foreground: var(--electric-foreground);
+
+  --card: oklch(0.985 0.004 250);
+  --card-foreground: var(--foreground);
+
+  --border: var(--line);
+  --ring: var(--electric);
+  --radius: 0px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  * {
+    @apply border-border;
+    min-width: 0;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+  ::selection {
+    background: var(--electric);
+    color: var(--electric-foreground);
+  }
+  nextjs-portal, [data-nextjs-toast], [data-nextjs-dev-overlay] {
+    display: none !important;
+  }
+}
+
+@layer utilities {
+  /* fine technical grid backdrop */
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .grid-lines-dense {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 2.5px var(--foreground);
+    color: transparent;
+  }
+  .text-outline-electric {
+    -webkit-text-stroke: 3px var(--electric);
+    color: transparent;
+  }
+  .text-outline-electric-thin {
+    -webkit-text-stroke: 2.5px var(--electric);
+    color: transparent;
+  }
+  .text-outline-light {
+    -webkit-text-stroke: 2px oklch(1 0 0 / 0.85);
+    color: transparent;
+  }
+
+  .tracking-mega {
+    letter-spacing: -0.05em;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cursor-none-desktop {
+      cursor: none;
+    }
+  }
+
+  /* fine subtle dot texture for elegant surface depth */
+  .grid-dots {
+    background-image: radial-gradient(circle, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: 16px 16px;
+  }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-x var(--marquee-duration, 30s) linear infinite;
+}
+
+@keyframes section-arrival {
+  0% {
+    opacity: 0.45;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-arrival {
+  animation: section-arrival 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Button Click Shockwave Ripple */
+@keyframes cyber-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .section-arrival {
+    animation: none;
+  }
+}
