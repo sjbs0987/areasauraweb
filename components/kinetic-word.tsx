@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion, type Variants } from 'motion/react'
 
 type Props = {
   text: string
@@ -12,7 +12,7 @@ type Props = {
 export function KineticWord({ text, className = '', outlineIndices = [] }: Props) {
   const reduce = useReducedMotion()
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -22,7 +22,7 @@ export function KineticWord({ text, className = '', outlineIndices = [] }: Props
     },
   }
 
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: { y: '115%', opacity: 0, filter: 'blur(8px)' },
     visible: {
       y: '0%',
@@ -30,7 +30,7 @@ export function KineticWord({ text, className = '', outlineIndices = [] }: Props
       filter: 'blur(0px)',
       transition: {
         duration: 0.85,
-        ease: [0.22, 1, 0.36, 1] as const
+        ease: [0.22, 1, 0.36, 1] as any,
       },
     },
   }
