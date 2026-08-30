@@ -22,6 +22,7 @@ type AuthCtx = {
   handleRegister: (email: string, password: string) => Promise<{ error?: string }>
   handleVerifyOtp: (email: string, code: string) => Promise<{ error?: string }>
   handleLogout: () => Promise<void>
+  handleSubscribe: (plan?: any) => Promise<void> | void
 }
 
 const Ctx = createContext<AuthCtx | null>(null)
@@ -151,6 +152,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     persist(null)
   }
 
+  // ─── Subscribe ─────────────────────────────────────────────────────────
+  const handleSubscribe = async (plan?: any) => {
+    if (!user) {
+      setIsAuthModalOpen(true)
+    }
+  }
+
   return (
     <Ctx.Provider value={{
       user,
@@ -162,6 +170,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       handleRegister,
       handleVerifyOtp,
       handleLogout,
+      handleSubscribe,
     }}>
       {children}
     </Ctx.Provider>
@@ -169,4 +178,3 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 const delay = (ms: number) => new Promise<void>(r => setTimeout(r, ms))
-
