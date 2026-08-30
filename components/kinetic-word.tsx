@@ -30,7 +30,7 @@ export function KineticWord({ text, className = '', outlineIndices = [] }: Props
       filter: 'blur(0px)',
       transition: {
         duration: 0.85,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.22, 1, 0.36, 1] as const
       },
     },
   }
