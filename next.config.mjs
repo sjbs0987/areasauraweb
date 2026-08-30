@@ -11,4 +11,11 @@ const nextConfig = {
 }
 
 export default nextConfig
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  // остальные твои параметры (если есть)
+};
+
+export default nextConfig;
 
