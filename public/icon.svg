@@ -1,7 +1,0 @@
-<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Golden Ratio Proportions: Square = 110x110 (phi^2), Core Eye = 22px diameter (110 / 5) -->
-  <g transform="translate(90, 90) rotate(22)">
-    <rect x="-55" y="-55" width="110" height="110" fill="#2b4aff" fill-opacity="0.08" stroke="#2b4aff" stroke-width="4.5"/>
-  </g>
-  <circle cx="90" cy="90" r="11" fill="#2b4aff"/>
-</svg>
